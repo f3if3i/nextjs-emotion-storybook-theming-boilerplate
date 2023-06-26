@@ -10,7 +10,6 @@ export default function Home() {
     const [themeName, setThemeName]= useState<"default" | "vivid">()
     const style = getStyles(theme)
     useEffect(() => {
-        console.log({ theme })
         setThemeName(getThemeName(theme))
     }, [theme])
     
@@ -32,7 +31,8 @@ const getStyles = (theme: any) => {
             justifyContent: "center",
             alignItems: "center",
             minHeight: "600px",
-            fontSize: "48px"
+            fontSize: "48px",
+            color: theme.colors.primary.main
         })
     })
 }
