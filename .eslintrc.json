@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:storybook/recommended"
+  ],
+  "rules": {
+    "quotes": ["error", "double"],
+    "indent": ["error", 4],
+    "semi": ["error", "never"]
+  }
+}
