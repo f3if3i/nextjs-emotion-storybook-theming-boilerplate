@@ -1,5 +1,6 @@
 import { css } from "@emotion/react"
 import { useThemeSwitcher } from "../store/ThemeContext"
+import { Theme } from "@/theme"
 
 interface ButtonProps {
   label: string;
@@ -24,7 +25,7 @@ export const Button = ({
     )
 }
 
-const getStyles = (theme: any) => {
+const getStyles = (theme: Theme) => {
     return ({
         button: css({
             color: `${theme.colors.primary.main}`,

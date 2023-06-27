@@ -50,6 +50,5 @@ export const vividTheme: Theme = {
             300: "#B0B0B0"
         },
     }
-
 }
 
