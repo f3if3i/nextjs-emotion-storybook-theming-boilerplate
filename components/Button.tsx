@@ -1,5 +1,4 @@
-import { css } from "@emotion/react"
-import { useThemeSwitcher } from "../store/ThemeContext"
+import { css, useTheme } from "@emotion/react"
 import { Theme } from "@/theme"
 
 interface ButtonProps {
@@ -11,7 +10,8 @@ export const Button = ({
     label,
     ...props
 }: ButtonProps) => {
-    const { theme } = useThemeSwitcher()
+    // emotionの機能
+    const theme = useTheme() as Theme
     const style = getStyles(theme)
 
     return (

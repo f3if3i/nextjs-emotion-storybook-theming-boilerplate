@@ -1,9 +1,10 @@
-import type { Preview } from "@storybook/react";
+// preview.tsx
+import { ThemeProvider as EmotionThemeProvider } from "@emotion/react"
+import { type Preview } from "@storybook/react"
+import React from "react";
 import { defaultTheme, vividTheme } from '../src/theme'
-import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
-import { ThemeProvider, useThemeSwitcher } from "../store/ThemeContext"
-import React, { useEffect } from "react";
 
+// テーマを取得するヘルパー
 const getTheme = (themeName) => {
   if (themeName === "vivid") {
     return vividTheme
@@ -11,26 +12,15 @@ const getTheme = (themeName) => {
   return defaultTheme
 }
 
+// decorator作成
 const withThemeProvider = (Story, context) => {
-  const theme = getTheme(context.globals.theme);
-
-  const ThemeSwitcherProvider = ({ children }) => {
-    const { setupTheme } = useThemeSwitcher()
-    useEffect(() => {
-      setupTheme(context.globals.theme);
-    }, [context.globals.theme, setupTheme])
-
-    return <>{children}</>
-  }
-
+  // globalTypesのthemeのvalue(defaultもしくはvivid)でthemeを取得
+  const theme = getTheme(context.globals.theme)
   return (
-    <ThemeProvider>
-      <EmotionThemeProvider theme={theme}>
-        <ThemeSwitcherProvider>
-          <Story {...context} />
-        </ThemeSwitcherProvider>
-      </EmotionThemeProvider>
-    </ThemeProvider>
+    // defaultThemeを反映
+    <EmotionThemeProvider theme={theme}>
+      <Story />
+    </EmotionThemeProvider>
   )
 }
 
@@ -44,19 +34,21 @@ const preview: Preview = {
       },
     },
   },
+  // globalType追加
   globalTypes: {
     theme: {
-      description: "Global theme for components",
-      defaultValue: "default",
+      description: 'Global theme for components',
+      defaultValue: 'default',
+      // toolbarのタイトル、アイコンとアイテム（複数追加可能）の設定
       toolbar: {
-        title: "Theme",
-        icon: "circlehollow",
-        items: ["default", "vivid"],
+        title: 'Theme',
+        icon: 'circlehollow',
+        items: ['default', 'vivid'],
         dynamicTitle: true,
       },
     },
   },
-  decorators: [withThemeProvider],
+  decorators: [withThemeProvider]
 }
 
 export default preview

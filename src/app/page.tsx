@@ -1,23 +1,20 @@
 "use client"
-import { css } from "@emotion/react"
+import { Theme } from "@/theme"
+import { css, useTheme } from "@emotion/react"
 import { Button } from "../../components/Button"
-import { useThemeSwitcher } from "../../store/ThemeContext"
-import { useEffect, useState } from "react"
 import { getThemeName } from "../../utils/getThemeName"
 
 export default function Home() {
-    const { theme, toggleTheme } = useThemeSwitcher()
-    const [themeName, setThemeName]= useState<"default" | "vivid">()
+    const theme = useTheme() as Theme
     const style = getStyles(theme)
-    useEffect(() => {
-        setThemeName(getThemeName(theme))
-    }, [theme])
+    const themeName = getThemeName(theme)
+
     
     return (
         <main>
             <div css={style.container}>
                 <p>Current Theme: {themeName}</p>
-                <Button label="Button" onClick={() => toggleTheme()} />
+                <Button label="Button" onClick={() => {}} />
             </div>
         </main >
     )
