@@ -15,13 +15,13 @@ const withThemeProvider = (Story, context) => {
   const theme = getTheme(context.globals.theme);
 
   const ThemeSwitcherProvider = ({ children }) => {
-    const { setupTheme } = useThemeSwitcher();
+    const { setupTheme } = useThemeSwitcher()
     useEffect(() => {
       setupTheme(context.globals.theme);
-    }, [context.globals.theme, setupTheme]);
+    }, [context.globals.theme, setupTheme])
 
-    return <>{children}</>;
-  };
+    return <>{children}</>
+  }
 
   return (
     <ThemeProvider>
@@ -31,8 +31,8 @@ const withThemeProvider = (Story, context) => {
         </ThemeSwitcherProvider>
       </EmotionThemeProvider>
     </ThemeProvider>
-  );
-};
+  )
+}
 
 const preview: Preview = {
   parameters: {
